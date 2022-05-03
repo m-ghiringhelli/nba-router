@@ -3,7 +3,7 @@ import { fetchTeams } from "./services/teams";
 import style from './App.css';
 import Home from "./views/Home/Home";
 import { Switch, Route } from "react-router-dom";
-import TeamDetail from "./views/TeamDetail";
+import TeamDetail from "./views/Team/TeamDetail";
 
 export default function App() {
   const [teams, setTeams] = useState([]);
