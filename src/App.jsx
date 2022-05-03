@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { fetchTeams } from "./services/teams";
 import style from './App.css';
+import Home from "./views/Home/Home";
+import { Switch, Route } from "react-router-dom";
+import TeamDetail from "./views/TeamDetail";
 
 export default function App() {
   const [teams, setTeams] = useState([]);
   
-  
-
   useEffect(() => {
     const getData = async () => {
       const data = await fetchTeams();
@@ -16,13 +17,16 @@ export default function App() {
   }, []);
 
   return (
-    <div className={style.teamContainer}>
-      {teams.map((team) => (
-        <div key={team.id} className={style.teamCard}>
-          <img alt={`${team.name} logo`} src={team.logo} />
+    <Switch>
+      <Route exact path='/'>
+        <div className={style.teamContainer}>
+          <Home teams={teams} />
         </div>
-      ))}
-    </div>
+      </Route>
+      <Route path='/team/:id'>
+        <TeamDetail />
+      </Route>
+    </Switch>
   )
 }
 
