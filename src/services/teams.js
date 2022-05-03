@@ -10,7 +10,7 @@ export async function fetchTeams() {
   const response = await fetch('https://api-nba-v1.p.rapidapi.com/teams', options);
   const data = await response.json();
   const res = data.response;
-  // filter out NBA teams and remove one random team from data set that is not actually an NBA team
+  // filter out NBA teams and remove the one team from data set that is not actually an NBA team
   const teams = res.filter((team) => (team.nbaFranchise === true && team.id !== 37));
   
   return teams;
